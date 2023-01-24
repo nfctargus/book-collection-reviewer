@@ -11,8 +11,8 @@ A tool designed to keep track of your probably unhealthy book collection.
 # Init New:
 ng new frontend --skip-tests
 
-#Running Front End
+# Running Front End
 ng serve -o
 
-#Running Back end
+# Running Back end
 npm start
