@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BookService } from 'src/app/services/book.service';
-import { Book } from 'src/app/shared/models/Book';
+import { Book } from 'src/shared/models/Book';
 
 @Component({
   selector: 'app-home',

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Book } from 'src/shared/models/Book';
 import { sample_books } from 'src/books';
-import { Book } from '../shared/models/Book';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class BookService {
 
   constructor() { }
 
-	getAllBooks():Book[] {
+  getAllBooks():Book[] {
 		return sample_books;
 	}
 }

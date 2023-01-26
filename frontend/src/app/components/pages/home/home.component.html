@@ -9,14 +9,18 @@
 				<a>
 					<img [src]="book.imageUrl" [alt]="book.name"/>
 					<div class="details">
-						{{book.name}}
+						<span>{{book.name}}</span>
+						<span>{{book.author}}</span>
 					</div>
-					<div class="favourite {{book.favourite?'':'not'}}">
-						❤
+					<div class="favourite">
+						<span>
+							<ngb-rating [max]="5" [(rate)]="book.stars" [readonly]="true"></ngb-rating>
+						</span>
+						<span>
+							<img src="{{book.favourite?'/assets/favourite.svg':'/assets/notFavourite.svg'}}"/>
+						</span>
 					</div>
-					<div class="rating">
 
-					</div>
 				</a>
 			</li>
 		</ul>

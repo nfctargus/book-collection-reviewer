@@ -4,8 +4,8 @@ import { AddItemPageComponent } from './components/pages/add-item-page/add-item-
 import { HomeComponent } from './components/pages/home/home.component';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
-  {path:'add',component:AddItemPageComponent},
+	{path:'',component:HomeComponent},
+  	{path:'add',component:AddItemPageComponent},
 ];
 
 @NgModule({
