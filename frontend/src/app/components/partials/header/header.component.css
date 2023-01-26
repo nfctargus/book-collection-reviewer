@@ -1,0 +1,40 @@
+.headerContainer {
+	display: flex;
+	width:100%;
+	background:none;
+	border-bottom: 2px solid #242424ac;
+	height:5rem;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+
+}
+.headerLogo {
+	margin: 0 1rem 0 2rem;
+}
+.headerLogo h1 {
+	font-size: 1.5rem;
+	text-transform: lowercase;
+}
+.headerPageLinks {
+	margin: 0 2rem 0 1rem;
+	display: flex;
+}
+a {
+	margin:2rem;
+}
+img {
+	width: 30px;
+	height:30px;
+}
+img:hover{
+	animation: spinnyBoi 1s both;
+}
+@keyframes spinnyBoi {
+	from {
+		transform: rotate(0deg);
+	  }
+	  to {
+		transform: rotate(360deg);
+	  }
+}

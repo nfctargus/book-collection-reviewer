@@ -22,11 +22,12 @@ import { TitleComponent } from './components/partials/title/title.component';
     LoadingComponent,
     SearchComponent,
     CategoriesComponent,
-    TitleComponent
+    TitleComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

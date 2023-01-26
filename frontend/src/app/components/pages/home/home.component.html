@@ -1,1 +1,24 @@
-<p>home works!</p>
+<div class="home">
+	<div class="search">
+		<input type="text" placeholder="Search..."/>
+		<button>Search</button>
+	</div>
+	<div class="content">
+		<ul>
+			<li *ngFor="let book of books">
+				<a>
+					<img [src]="book.imageUrl" [alt]="book.name"/>
+					<div class="details">
+						{{book.name}}
+					</div>
+					<div class="favourite {{book.favourite?'':'not'}}">
+						❤
+					</div>
+					<div class="rating">
+
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
