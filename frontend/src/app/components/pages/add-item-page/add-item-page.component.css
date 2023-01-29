@@ -1,0 +1,25 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+.content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.content input {
+	margin-bottom: 1.2rem;
+	border-radius: 5px;
+}
+.content button {
+	margin:1rem 0 1rem 0;
+	height:2.5rem;
+	border-radius: 5px;
+}
+.addBookForm {
+	display: flex;
+	flex-direction: column;
+	width: 25%;
+	margin:2rem;
+}

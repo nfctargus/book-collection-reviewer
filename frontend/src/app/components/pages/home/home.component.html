@@ -1,12 +1,13 @@
 <div class="home">
-	<div class="search">
-		<input type="text" placeholder="Search..."/>
-		<button>Search</button>
-	</div>
+	<app-search></app-search>
+	<app-categories></app-categories>
+
+
 	<div class="content">
+		<app-error [visible]="!books || !books.length" resetLinkText="Clear Search"></app-error>
 		<ul>
 			<li *ngFor="let book of books">
-				<a>
+				<a routerLink="/books/{{book.id}}">
 					<img [src]="book.imageUrl" [alt]="book.name"/>
 					<div class="details">
 						<span>{{book.name}}</span>

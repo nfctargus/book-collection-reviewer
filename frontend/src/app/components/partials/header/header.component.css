@@ -7,23 +7,22 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-
 }
 .headerLogo {
 	margin: 0 1rem 0 2rem;
 }
-.headerLogo h1 {
+.headerLogo h1,a {
 	font-size: 1.5rem;
 	text-transform: lowercase;
+	color:#242424;
 }
-.headerPageLinks {
+.headerPageLinks, .headerPageLinks ul {
 	margin: 0 2rem 0 1rem;
 	display: flex;
-}
-a {
-	margin:2rem;
+	list-style: none;
 }
 img {
+	margin:2rem;
 	width: 30px;
 	height:30px;
 }
@@ -37,4 +36,53 @@ img:hover{
 	  to {
 		transform: rotate(360deg);
 	  }
+}
+
+
+ .menu:hover .loginPanel {
+	background-color: #ccc;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width:20rem;
+  }
+
+.loginPanel {
+	position: absolute;
+	z-index: 1;
+	box-shadow: 0 0 8px 2px #242424;
+	background: whitesmoke;
+	display: none;
+	border-radius: 1rem;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+input {
+	border: 1px solid #242424;
+	outline: none;
+	border-radius: 5px;
+	width:80%;
+}
+input:invalid {
+	border:2px solid red;
+}
+form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width:100%;
+}
+button {
+	background: none;
+	border: 1px solid #242424;
+	margin:1rem;
+	border-radius: 5px;
+	font-size: 1.1rem;
 }

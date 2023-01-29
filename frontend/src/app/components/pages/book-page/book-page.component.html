@@ -1,0 +1,20 @@
+<app-error [visible]="!book" errorMessage="Sorry, the book you are looking for could not be found." resetLinkText="Go Back"></app-error>
+<div *ngIf="book" class="container">
+	<div class="bookImage">
+		<img [src]="book.imageUrl" [alt]="book.name">
+	</div>
+	<div class="content">
+		<h1>{{book.name}}<img (click)="toggleFavourite(book.id)" src="{{book.favourite?'/assets/favourite.svg':'/assets/notFavourite.svg'}}"/></h1>
+		<h2>{{book.author}}</h2>
+		<div class="rating">
+			<ngb-rating [max]="5" [(rate)]="book.stars"></ngb-rating>
+		</div>
+		<div class="categories">
+			<h3>Categories:</h3>
+			<span *ngFor="let category of categories">
+				{{category}}
+			</span>
+		</div>
+
+	</div>
+</div>

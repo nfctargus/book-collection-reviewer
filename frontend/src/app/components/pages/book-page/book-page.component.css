@@ -1,0 +1,54 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top:3rem;
+	width:75%;
+}
+.bookImage {
+	display: flex;
+	width:50%;
+	justify-content: center;
+	align-items: center;
+	height: 75vh;
+}
+.content {
+	display: flex;
+	width:50%;
+	flex-direction: column;
+	justify-content: center;
+	margin-left: 2rem;
+}
+img {
+	object-fit: scale-down;
+	height: 40rem;
+	margin: 1rem;
+}
+h1 {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+
+}
+h1 img {
+	max-height: 2rem;
+	margin-left: 2rem;
+}
+.rating {
+
+	height:2rem;
+	width:50%;
+	margin:2rem 1rem 0 0;
+}
+.categories {
+	margin-top:1rem;
+	line-height: 2.4rem;
+}
+.categories span {
+	background: #dcdcdc;
+	color:#242424;
+	border-radius:5px;
+	padding: 0.3rem 0.4rem;
+	margin:0.5rem 0.4rem;
+}

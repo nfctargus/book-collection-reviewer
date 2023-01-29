@@ -1,8 +1,6 @@
-import { Category } from "./app/shared/models/Category";
-import { Book } from "./app/shared/models/Book";
 
 
-export const sample_books: Book[] = [
+export const sample_books: any[] = [
 	{
 		id:'0330362143',
 		name: 'Temple',
@@ -77,7 +75,7 @@ export const sample_books: Book[] = [
 	},
 ]
 
-export const sample_categories: Category[] = [
+export const sample_categories: any[] = [
 	{ name:'Action',count:2},
 	{ name:'Fast Paced',count:1},
 	{ name:'Fiction',count:5},
@@ -91,3 +89,20 @@ export const sample_categories: Category[] = [
 	{ name:'Animals',count:1},
 	{ name:'Magic',count:2},
 ]
+
+export const sample_users: any[] = [
+    {
+        name: "John Doe",
+        email: "john@gmail.com",
+        password: "12345",
+        address: "Toronto On",
+        isAdmin: true,
+    },
+    {
+        name: "Jane Doe",
+        email: "jane@gmail.com",
+        password: "12345",
+        address: "Shanghai",
+        isAdmin: false,
+    },
+];

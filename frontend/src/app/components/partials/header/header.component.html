@@ -1,9 +1,29 @@
 <div class="headerContainer">
 	<div class="headerLogo">
-		<h1>BookWorm Collection</h1>
+		<a routerLink="/"><h1>BookWorm Collection</h1></a>
 	</div>
 	<div class="headerPageLinks">
-		<a routerLink="/"><img src="/assets/home.svg" alt="Home"></a>
-		<a routerLink="/add"><img src="/assets/add.svg" alt="Add"></a>
+		<ul>
+			<li class="menu">
+				<a routerLink="/login"><img src="/assets/profile.svg" alt="Profile"></a>
+				<div class="loginPanel">
+					<app-title title="Login"></app-title>
+					<form [formGroup]="loginForm" (ngSubmit)="submit()">
+						<label for="email">Email</label>
+						<input id="email" type="email" formControlName="email"/>
+						<label for="password">Password</label>
+						<input id="password" type="password" formControlName="password"/>
+						<button type="submit">Go!</button>
+					</form>
+				</div>
+			</li>
+			<li>
+				<a routerLink="/"><img src="/assets/home.svg" alt="Home"></a>
+			</li>
+			<li>
+				<a routerLink="/add"><img src="/assets/add.svg" alt="Add"></a>
+			</li>
+		</ul>
+
 	</div>
 </div>

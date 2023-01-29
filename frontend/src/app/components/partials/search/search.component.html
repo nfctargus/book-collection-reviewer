@@ -1,1 +1,5 @@
-<p>search works!</p>
+<div class="search-container">
+	<input #s type="text" (keyup.enter)="search(s.value)" [value]="searchTerm" />
+	<button (click)="search(s.value)"><img src="/assets/search.svg" alt="Filter"></button>
+</div>
+

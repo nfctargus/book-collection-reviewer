@@ -1,0 +1,30 @@
+.categoryContainer {
+	display: flex;
+	flex-wrap: wrap;
+}
+.categoryContainer a {
+	background: #dcdcdc;
+	color:#242424;
+	border-radius:5px;
+	padding: 0.3rem 0.4rem;
+	margin:0.2rem 0.15rem;
+}
+.categoryContainer a:hover {
+	opacity: 0.8;
+}
+button {
+	border: none;
+	outline: none;
+	background: #dcdcdc;
+	border-radius:5px;
+	padding: 0.3rem 0.4rem;
+	margin:0.2rem 0.15rem;
+}
+.categories {
+	padding: 0.3rem 0.4rem;
+	margin:0.2rem 0.15rem;
+}
+img {
+	width: 25px;
+	height:25px;
+}
