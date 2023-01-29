@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './components/partials/search/search.component';
 import { ErrorComponent } from './components/partials/error/error.component';
 import { ToastrModule } from 'ngx-toastr';
+import { LibraryPageComponent } from './components/pages/library-page/library-page.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
     TitleComponent,
     BookPageComponent,
     ErrorComponent,
+    LibraryPageComponent,
   ],
   imports: [
     BrowserModule,

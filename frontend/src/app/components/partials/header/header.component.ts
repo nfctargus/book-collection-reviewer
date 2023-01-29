@@ -1,31 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/shared/models/User';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-	loginForm!:FormGroup;
-	isSubmitted = false;
+export class HeaderComponent {
+	user!:User;
 
-	constructor(private formBuilder:FormBuilder,private userService:UserService) {}
-	ngOnInit():void {
-		this.loginForm = this.formBuilder.group({
-			email:['',[Validators.required,Validators.email]],
-			password:['',Validators.required]
+	constructor(private formBuilder:FormBuilder,private userService:UserService,private router:Router) {
+		userService.userObservable.subscribe((newUser) => {
+			this.user = newUser;
 		})
 	}
 
-	get fc() {
-		return this.loginForm.controls;
+	logout() {
+		this.userService.logout();
+		this.router.navigateByUrl("");
 	}
-	submit() {
-		this.isSubmitted = true;
-		if(this.loginForm.invalid) return;
-
-		this.userService.login({email:this.fc['email'].value,password:this.fc['password'].value})
+	get isAuth() {
+		return this.user.token;
 	}
 }

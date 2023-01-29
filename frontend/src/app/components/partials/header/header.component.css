@@ -21,8 +21,17 @@
 	display: flex;
 	list-style: none;
 }
+.headerPageLinks li {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 1.2rem;
+}
+
+
 img {
-	margin:2rem;
+	margin:1.5rem;
 	width: 30px;
 	height:30px;
 }
@@ -32,57 +41,19 @@ img:hover{
 @keyframes spinnyBoi {
 	from {
 		transform: rotate(0deg);
-	  }
-	  to {
+	}
+	to {
 		transform: rotate(360deg);
-	  }
+	}
 }
 
-
- .menu:hover .loginPanel {
-	background-color: #ccc;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width:20rem;
-  }
-
-.loginPanel {
-	position: absolute;
-	z-index: 1;
-	box-shadow: 0 0 8px 2px #242424;
-	background: whitesmoke;
-	display: none;
-	border-radius: 1rem;
-}
-
-.content {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-input {
-	border: 1px solid #242424;
-	outline: none;
-	border-radius: 5px;
-	width:80%;
-}
-input:invalid {
-	border:2px solid red;
-}
-form {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width:100%;
-}
 button {
-	background: none;
+	background-color: #ccc;
 	border: 1px solid #242424;
-	margin:1rem;
 	border-radius: 5px;
 	font-size: 1.1rem;
+}
+button:hover {
+	opacity: 0.8;
+
 }

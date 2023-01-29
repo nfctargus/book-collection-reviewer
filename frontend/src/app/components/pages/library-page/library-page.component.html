@@ -1,0 +1,28 @@
+<div class="library">
+	<app-search></app-search>
+	<app-categories></app-categories>
+
+	<div class="content">
+		<app-error [visible]="!books || !books.length" resetLinkText="Clear Search"></app-error>
+		<ul>
+			<li *ngFor="let book of books">
+				<a routerLink="/books/{{book.id}}">
+					<img [src]="book.imageUrl" [alt]="book.name"/>
+					<div class="details">
+						<span>{{book.name}}</span>
+						<span>{{book.author}}</span>
+					</div>
+					<div class="favourite">
+						<span>
+							<ngb-rating [max]="5" [(rate)]="book.stars" [readonly]="true"></ngb-rating>
+						</span>
+						<span>
+							<img src="{{book.favourite?'/assets/favourite.svg':'/assets/notFavourite.svg'}}"/>
+						</span>
+					</div>
+
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

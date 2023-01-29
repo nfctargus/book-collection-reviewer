@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { BookService } from 'src/app/services/book.service';
-import { Book } from 'src/app/shared/models/Book';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/shared/models/User';
 
 @Component({
   selector: 'app-home',
@@ -10,20 +10,38 @@ import { Book } from 'src/app/shared/models/Book';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-	books:Book[] = [];
-	constructor(private bookService:BookService,activatedRoute:ActivatedRoute) {
-		let booksObservable:Observable<Book[]>;
-		activatedRoute.params.subscribe((params) => {
-			if(params['searchTerm']) {
-				booksObservable = this.bookService.getAllBooksBySearchTerm(params['searchTerm']);
-			} else if (params['category']) {
-				booksObservable = this.bookService.getAllBooksByCategory(params['category']);
-			} else {
-				booksObservable = bookService.getAllBooks();
-			}
-			booksObservable.subscribe((serverBooks) => {
-				this.books = serverBooks;
-			})
+	loginForm!:FormGroup;
+	isSubmitted = false;
+	user!:User;
+	returnUrl = '';
+
+	constructor(private formBuilder:FormBuilder,private userService:UserService,private router:Router) {
+		userService.userObservable.subscribe((newUser) => {
+			this.user = newUser;
 		})
+	}
+	ngOnInit():void {
+		this.loginForm = this.formBuilder.group({
+			email:['',[Validators.required,Validators.email]],
+			password:['',Validators.required]
+		})
+	}
+
+	get fc() {
+		return this.loginForm.controls;
+	}
+	submit() {
+		this.isSubmitted = true;
+		if(this.loginForm.invalid) return;
+
+		this.userService.login({email:this.fc['email'].value,password:this.fc['password'].value}).subscribe(()=> {
+			this.router.navigateByUrl('/library');
+		});
+	}
+	logout() {
+		this.userService.logout();
+	}
+	get isAuth() {
+		return this.user.token;
 	}
 }
