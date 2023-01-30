@@ -1,5 +1,16 @@
-<div class="search-container">
-	<input #s type="text" (keyup.enter)="search(s.value)" [value]="searchTerm" />
-	<button (click)="search(s.value)"><img src="/assets/search.svg" alt="Filter"></button>
+<div class="container">
+	<div class="categories">
+		<button (click)="showCategories()"><img src="/assets/filter.svg" alt="Filter"></button>
+		<div *ngIf="catVisibility" class="categoriesList">
+			<a *ngFor="let category of categories" routerLink="/categories/{{category.name}}">
+				{{category.name}}({{category.count}})
+			</a>
+		</div>
+	</div>
+	<div class="search">
+		<input #s type="text" (keyup.enter)="search(s.value)" [value]="searchTerm" />
+		<button  (click)="search(s.value)"><img src="/assets/search.svg" alt="Filter"></button>
+	</div>
 </div>
+
 
