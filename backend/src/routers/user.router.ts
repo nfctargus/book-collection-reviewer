@@ -19,7 +19,7 @@ router.get("/seed",expressAsyncHandler(async (req,res) => {
 }))
 
 //Log in (local)
-router.post("/login", (req,res) => {
+/* router.post("/login", (req,res) => {
     const { email, password} = req.body;
     const user = sample_users.find(user => user.email === email && user.password === password);
     if(user) {
@@ -28,9 +28,9 @@ router.post("/login", (req,res) => {
     else {
         res.status(400).send("Username or password is incorrect.")
     }
-})
+}) */
 //Log in (mongo)
-/* router.post("/login", expressAsyncHandler(async (req,res) => {
+router.post("/login", expressAsyncHandler(async (req,res) => {
     const { email, password} = req.body;
     const user = await UserModel.findOne({email,password});
     if(user) {
@@ -39,7 +39,7 @@ router.post("/login", (req,res) => {
     else {
         res.status(400).send("Username or password is incorrect.")
     }
-})) */
+}))
 
 const generateTokenResponse = (user:any) => {
     const token = jwt.sign({

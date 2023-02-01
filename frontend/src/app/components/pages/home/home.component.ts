@@ -28,10 +28,10 @@ export class HomeComponent {
 	}
 	public updateFavourite(bookId:string) {
 		const bookToUpdate = this.books.find((book) => book.id === bookId);
-		const newFavourite = !bookToUpdate?.favourite
-		alert(bookToUpdate?.id)
-		this.bookService.setFavouritebyBookId(bookId,newFavourite)
-		//return bookToUpdate?.id;
 		
+		if(bookToUpdate) {
+			bookToUpdate.favourite = !bookToUpdate.favourite;
+			this.bookService.setFavouritebyBookId(bookId,bookToUpdate)
+		}		
 	}
 }

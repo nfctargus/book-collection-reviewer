@@ -6,7 +6,7 @@ import bookRouter from './routers/book.router';
 import { dbConnect } from './configs/database.config';
 dotenv.config();
 //Connect to MongoDB
-//dbConnect();
+dbConnect();
 
 const app = express();
 app.use(express.json());

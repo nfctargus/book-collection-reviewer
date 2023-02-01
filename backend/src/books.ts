@@ -2,7 +2,7 @@
 
 export const sample_books: any[] = [
 	{
-		id:'0330362143',
+		isbn:'0330362143',
 		name: 'Temple',
 		author: 'Matthew Reilly',
 		favourite: false,
@@ -11,7 +11,7 @@ export const sample_books: any[] = [
 		categories: ['Action', 'Fast Paced', 'Fiction'],
 	},
 	{
-		id:'1743517017',
+		isbn:'1743517017',
 		name: 'The Great Zoo of China',
 		author: 'Matthew Reilly',
 		favourite: true,
@@ -20,7 +20,7 @@ export const sample_books: any[] = [
 		categories: ['Dragons', 'Fantasy', 'Fiction'],
 	},
 	{
-		id:'1742612393',
+		isbn:'1742612393',
 		name: 'The Tournament',
 		author: 'Matthew Reilly',
 		favourite: false,
@@ -29,7 +29,7 @@ export const sample_books: any[] = [
 		categories: ['Fantasy', 'Puzzles', 'Chess'],
 	},
 	{
-		id:'1409156052',
+		isbn:'1409156052',
 		name: 'The Lincoln Lawyer',
 		author: 'Michael Connelly',
 		favourite: false,
@@ -38,7 +38,7 @@ export const sample_books: any[] = [
 		categories: ['True Crime', 'Thriller'],
 	},
 	{
-		id:'0425265625',
+		isbn:'0425265625',
 		name: 'Tower Lord',
 		author: 'Anthony Ryan',
 		favourite: false,
@@ -47,7 +47,7 @@ export const sample_books: any[] = [
 		categories: ['Fantasy', 'Action','Adventure'],
 	},
 	{
-		id:'0316097446',
+		isbn:'0316097446',
 		name: 'Zoo',
 		author: 'James Patterson',
 		favourite: false,
@@ -56,7 +56,7 @@ export const sample_books: any[] = [
 		categories: ['Fantasy', 'Fiction','Animals'],
 	},
 	{
-		id:'074754624X',
+		isbn:'074754624X',
 		name: 'Harry Potter and the Goblet of Fire',
 		author: 'J. K. Rowling',
 		favourite: true,
@@ -65,7 +65,7 @@ export const sample_books: any[] = [
 		categories: ['Fantasy', 'Fiction','Magic'],
 	},
 	{
-		id:'9780007466863',
+		isbn:'9780007466863',
 		name: 'A Darkness at Sethanon',
 		author: 'Raymond E. Feist',
 		favourite: true,
