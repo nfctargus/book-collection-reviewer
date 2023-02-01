@@ -1,12 +1,14 @@
-<div class="home">
-	<div class="login">
-		<app-title title="Please login to continue"></app-title>
-		<form [formGroup]="loginForm" (ngSubmit)="submit()">
-			<label for="email">Email</label>
-			<input id="email" type="email" formControlName="email"/>
-			<label for="password">Password</label>
-			<input id="password" type="password" formControlName="password"/>
-			<button type="submit">Go!</button>
-		</form>
+<div class="container">
+	<div class="bookPanel" *ngFor="let book of books">
+		<img id="bookImage" [src]="book.imageUrl" [alt]="book.name" routerLink="/books/{{book.id}}"/>
+		<div class="bookDescription">
+			<span class="author">{{book.author}}</span>
+			<h5 class="title">{{book.name}}</h5>
+			<div class="star">
+				<ngb-rating [max]="5" [(rate)]="book.stars" [readonly]="true"></ngb-rating>
+				<img id="favouriteImg" (click)="updateFavourite(book.id)" src="{{book.favourite?'/assets/favourite.svg':'/assets/notFavourite.svg'}}"/>
+			</div>
+		</div>
 	</div>
 </div>
+	

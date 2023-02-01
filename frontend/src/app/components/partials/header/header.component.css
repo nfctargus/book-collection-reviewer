@@ -2,11 +2,14 @@
 	display: flex;
 	width:100%;
 	background:none;
-	border-bottom: 2px solid #242424ac;
+
 	height:5rem;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
+	box-shadow: 0 0 2rem rgb(48, 47, 47);;
+	background: rgb(47, 47, 47);
+
 }
 .headerLogo {
 	margin: 0 1rem 0 2rem;
@@ -14,7 +17,7 @@
 .headerLogo h1,a {
 	font-size: 1.5rem;
 	text-transform: lowercase;
-	color:#242424;
+	color:#ccc;
 }
 .headerPageLinks, .headerPageLinks ul {
 	margin: 0 2rem 0 1rem;

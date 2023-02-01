@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/shared/models/User';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { BookService } from 'src/app/services/book.service';
+import { Book } from 'src/app/shared/models/Book';
 
 @Component({
   selector: 'app-home',
@@ -10,38 +10,28 @@ import { User } from 'src/app/shared/models/User';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-	loginForm!:FormGroup;
-	isSubmitted = false;
-	user!:User;
-	returnUrl = '';
-
-	constructor(private formBuilder:FormBuilder,private userService:UserService,private router:Router) {
-		userService.userObservable.subscribe((newUser) => {
-			this.user = newUser;
+	books:Book[] = [];
+	constructor(private bookService:BookService,activatedRoute:ActivatedRoute) {
+		let booksObservable:Observable<Book[]>;
+		activatedRoute.params.subscribe((params) => {
+			if(params['searchTerm']) {
+				booksObservable = this.bookService.getAllBooksBySearchTerm(params['searchTerm']);
+			} else if (params['category']) {
+				booksObservable = this.bookService.getAllBooksByCategory(params['category']);
+			} else {
+				booksObservable = bookService.getAllBooks();
+			}
+			booksObservable.subscribe((serverBooks) => {
+				this.books = serverBooks;
+			})
 		})
 	}
-	ngOnInit():void {
-		this.loginForm = this.formBuilder.group({
-			email:['',[Validators.required,Validators.email]],
-			password:['',Validators.required]
-		})
-	}
-
-	get fc() {
-		return this.loginForm.controls;
-	}
-	submit() {
-		this.isSubmitted = true;
-		if(this.loginForm.invalid) return;
-
-		this.userService.login({email:this.fc['email'].value,password:this.fc['password'].value}).subscribe(()=> {
-			this.router.navigateByUrl('/library');
-		});
-	}
-	logout() {
-		this.userService.logout();
-	}
-	get isAuth() {
-		return this.user.token;
+	public updateFavourite(bookId:string) {
+		const bookToUpdate = this.books.find((book) => book.id === bookId);
+		const newFavourite = !bookToUpdate?.favourite
+		alert(bookToUpdate?.id)
+		this.bookService.setFavouritebyBookId(bookId,newFavourite)
+		//return bookToUpdate?.id;
+		
 	}
 }

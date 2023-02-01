@@ -16,7 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchComponent } from './components/partials/search/search.component';
 import { ErrorComponent } from './components/partials/error/error.component';
 import { ToastrModule } from 'ngx-toastr';
-import { LibraryPageComponent } from './components/pages/library-page/library-page.component';
+import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
+import { LoginComponent } from './components/pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { LibraryPageComponent } from './components/pages/library-page/library-pa
     TitleComponent,
     BookPageComponent,
     ErrorComponent,
-    LibraryPageComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +45,9 @@ import { LibraryPageComponent } from './components/pages/library-page/library-pa
 		positionClass:'toast-bottom-right'
 	})
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass: LoadingInterceptor,multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

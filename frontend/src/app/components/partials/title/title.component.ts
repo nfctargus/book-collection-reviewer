@@ -12,4 +12,6 @@ export class TitleComponent {
 	margin? = '1rem 0 1rem 0';
 	@Input()
 	fontSize? = '1.2rem';
+	@Input()
+	fontColor? = '#616161;'
 }

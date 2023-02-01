@@ -1,8 +1,0 @@
-<div *ngIf="categories" class="categoryContainer">
-	<button (click)="showCategories()"><img src="/assets/filter.svg" alt="Filter"></button>
-	<div *ngIf="catVisibility" class="categories">
-		<a *ngFor="let category of categories" routerLink="/categories/{{category.name}}">
-			{{category.name}}({{category.count}})
-		</a>
-	</div>
-</div>

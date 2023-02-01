@@ -1,8 +1,12 @@
+import dotenv from 'dotenv';
 import express from "express";
 import cors from "cors";
-
 import userRouter from './routers/user.router';
 import bookRouter from './routers/book.router';
+import { dbConnect } from './configs/database.config';
+dotenv.config();
+//Connect to MongoDB
+//dbConnect();
 
 const app = express();
 app.use(express.json());
