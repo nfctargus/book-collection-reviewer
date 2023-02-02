@@ -1,4 +1,5 @@
-import { Router } from "express";
+import axios from "axios";
+import { request, Router } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { sample_books, sample_categories } from "../books";
 import { BookModel } from "../models/book.model";
@@ -40,7 +41,7 @@ router.get("/seed",expressAsyncHandler(async (req,res) => {
 //Get a book based on a search, checks Book Name & Author (Mongo)
 router.get("/search/:searchTerm", expressAsyncHandler(async (req,res) => {
     const regEx = new RegExp(req.params.searchTerm, 'i');
-    const books = await BookModel.find({name: {$regex:regEx}})
+    const books = await BookModel.find({title: {$regex:regEx}})
     res.send(books);
 }))
 
@@ -105,22 +106,6 @@ router.get("/:bookId", expressAsyncHandler(async (req,res) => {
 
 
 // Update favourite property for selected book
-/* router.put("/:bookId", (req,res) => {
-    const bookId = req.params.bookId;
-    const updatedBook = req.body.updatedBook;
-    
-    BookModel.updateOne({id:{bookId}}, 
-        {updatedBook}, function (err:any, docs:any) {
-        if (err){
-            console.log("Error: " + err)
-        }
-        else{
-            console.log("Updated Docs : ", docs);
-        }
-    });
-    res.status(200).send(JSON.parse("Updated"))
-    
-}) */
 router.put('/:bookId', (req, res) => {
     const {bookId: _id} = req.params
     const selectedBook = req.body;
@@ -131,10 +116,32 @@ router.put('/:bookId', (req, res) => {
         } else {
             res.status(200).send();
         }
+    })
+})
+
+router.get('/add/:isbn', async (req, res) => {
+    const isbn = req.params.isbn;
+    try {
+        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`);
+        const bookData = response.data.items[0].volumeInfo;
+        const newBook = new BookModel({
+            isbn: isbn,
+            title: bookData.title,
+            author: bookData.authors[0],
+            favourite:false,
+            stars:2.5,
+            imageUrl: bookData.imageLinks.thumbnail || '/',
+            categories:bookData.categories
+        }); 
+        
+        await newBook.save();
+        res.send(`Book with ISBN ${isbn} saved successfully`);
+
+    } catch (error) {
+        res.status(500).send(error);
     }
-      
-      
-    )
-  })
+});
+
+
 
 export default router;

@@ -3,7 +3,7 @@ import { model, Schema } from "mongoose";
 export interface Book {
     id:string;
     isbn:string;
-    name: string;
+    title: string;
     author: string;
     favourite: boolean;
     stars: number;
@@ -12,8 +12,8 @@ export interface Book {
 }
 export const BookSchema = new Schema<Book>(
     {
-        isbn:{type:String,required:true},
-        name:{type:String,required:true},
+        isbn:{type:String,required:true,unique:true},
+        title:{type:String,required:true},
         author:{type:String,required:true},
         favourite:{type:Boolean,default:false},
         stars:{type:Number,required:true},
