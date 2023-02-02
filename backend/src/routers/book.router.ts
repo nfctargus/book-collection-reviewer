@@ -142,6 +142,17 @@ router.get('/add/:isbn', async (req, res) => {
     }
 });
 
+router.get('/addAdvancedSearch/:searchTerm', async (req, res) => {
+    console.log("try")
+    try {
+        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${req.params.searchTerm}`);
+        const books = response.data.items;
+        const titles = books.map((book:any) => book.volumeInfo.title);
+        res.send(titles)
+    } catch (error) {
+        console.error(`Error searching for books: ${error}`);
+    }
+}); 
 
 
 export default router;
