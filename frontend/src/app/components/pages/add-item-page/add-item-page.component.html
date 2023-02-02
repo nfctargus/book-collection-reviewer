@@ -2,14 +2,16 @@
 	<div class="content">
 		<app-title title="Add a new Book" margin="4rem 0 0 0"></app-title>
 		<form class="addBookForm">
-			<label for="title">Title</label>
+			<label for="isbn">ISBN</label>
+			<input id="ISBN" #s type="text" [value]="isbn" />
+			<!-- <label for="title">Title</label>
 			<input id="title" type="text"/>
 			<label for="author">Author</label>
 			<input id="author" type="text"/>
 			<label for="categories">Categories</label>
-			<input id="categories" type="text"/>
+			<input id="categories" type="text"/> -->
 
-			<button>Add</button>
+			<button (click)="addBookByIsbn(s.value)">Add</button>
 		</form>
 	</div>
 </div>

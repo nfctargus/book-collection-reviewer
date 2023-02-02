@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { Book } from 'src/app/shared/models/Book';
 import { HttpClient } from '@angular/common/http';
 import { Category } from '../shared/models/Category';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { BOOKS_BY_SEARCH_URL, BOOKS_BY_CATEGORY_URL, BOOKS_ALL_CATEGORIES_URL, BOOKS_URL, BOOK_BY_ID_URL } from '../shared/models/constants/urls';
+import { BOOKS_BY_SEARCH_URL, BOOKS_BY_CATEGORY_URL, BOOKS_ALL_CATEGORIES_URL, BOOKS_URL, BOOK_BY_ID_URL, ADD_BOOK_URL } from '../shared/models/constants/urls';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class BookService {
 
-	constructor(private http:HttpClient) { }
+	constructor(private http:HttpClient,private toastrService:ToastrService) { }
 
 	getAllBooks():Observable<Book[]> {
 		return this.http.get<Book[]>(BOOKS_URL);
@@ -30,5 +31,8 @@ export class BookService {
 	}
 	setFavouritebyBookId(bookId:string,updatedBook:Book){
 		this.http.put(BOOK_BY_ID_URL + bookId,updatedBook).subscribe();
+	}
+	addNewBookByIsbn(isbn:string) {
+		this.http.get(ADD_BOOK_URL + isbn).subscribe();
 	}
 }

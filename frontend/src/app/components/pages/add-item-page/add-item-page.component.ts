@@ -1,39 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { BookService } from 'src/app/services/book.service';
 
 @Component({
-  selector: 'app-add-item-page',
-  templateUrl: './add-item-page.component.html',
-  styleUrls: ['./add-item-page.component.css']
+	selector: 'app-add-item-page',
+	templateUrl: './add-item-page.component.html',
+	styleUrls: ['./add-item-page.component.css']
 })
 export class AddItemPageComponent {
+	@Input()
+	isbn:string = '';
 
-	/*
-	import { Request, Response } from 'express';
-
-export const getBookInfo = async (req: Request, res: Response) => {
-  const { bookId } = req.params;
-
-  const bookInfoUrl = `https://openlibrary.org/api/books?bibkeys=${bookId}&format=json&jscmd=data`;
-  try {
-    const bookInfoResponse = await fetch(bookInfoUrl);
-    const bookInfoData = await bookInfoResponse.json();
-    const bookInfo = bookInfoData[bookId];
-    const {
-        title,
-        authors,
-        publish_date,
-        cover
-    } = bookInfo;
-    const author = authors[0].name;
-    res.json({
-      title,
-      cover,
-      published_date: publish_date,
-      author
-    });
-  } catch (err) {
-    res.status(500).json({ error: err });
-  }
-};
-	} */
+	constructor(activatedRoute:ActivatedRoute,private bookService:BookService,private router:Router,private toastr: ToastrService) {
+		activatedRoute.params.subscribe((params) => {
+			if(params['isbn']) this.isbn = params['isbn'];
+		})
+	}
+	addBookByIsbn(isbn:string) {
+		if(isbn) 
+		this.bookService.addNewBookByIsbn(isbn)
+		this.toastr.success(`Book with ISBN: ${isbn} has been added!!`, 'Successfully Added');
+		this.router.navigateByUrl("/");
+	}
 }
