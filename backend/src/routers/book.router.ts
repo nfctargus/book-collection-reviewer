@@ -105,12 +105,10 @@ router.get("/:bookId", expressAsyncHandler(async (req,res) => {
 }))
 
 
-// Update favourite property for selected book
+// Update selected book
 router.put('/:bookId', (req, res) => {
-    const {bookId: _id} = req.params
     const selectedBook = req.body;
-  
-    BookModel.findOneAndUpdate({id:_id},{favourite:selectedBook.favourite}, (error:any,data:any) => {
+    BookModel.findOneAndUpdate({isbn:selectedBook.isbn},{title:selectedBook.title,author:selectedBook.author,favourite:selectedBook.favourite,stars:selectedBook.stars}, (error:any,data:any) => {
         if(error) {
             console.log(error)
         } else {

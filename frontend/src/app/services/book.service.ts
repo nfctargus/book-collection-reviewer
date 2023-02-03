@@ -29,7 +29,8 @@ export class BookService {
 	getBookById(bookId:string):Observable<Book>{
 		return this.http.get<Book>(BOOK_BY_ID_URL + bookId);
 	}
-	setFavouritebyBookId(bookId:string,updatedBook:Book){
+	updateBookbyBookId(bookId:string,updatedBook:Book){
+
 		this.http.put(BOOK_BY_ID_URL + bookId,updatedBook).subscribe();
 	}
 	addNewBookByIsbn(isbn:string) {

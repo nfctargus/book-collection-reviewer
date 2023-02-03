@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BookService } from 'src/app/services/book.service';
@@ -23,6 +23,7 @@ export class HomeComponent {
 			}
 			booksObservable.subscribe((serverBooks) => {
 				this.books = serverBooks;
+
 			})
 		})
 	}
@@ -31,7 +32,17 @@ export class HomeComponent {
 		
 		if(bookToUpdate) {
 			bookToUpdate.favourite = !bookToUpdate.favourite;
-			this.bookService.setFavouritebyBookId(bookId,bookToUpdate)
+			this.bookService.updateBookbyBookId(bookId,bookToUpdate)
 		}		
 	}
+	public changeRating(bookId:string,newRating:number) {
+		const bookToUpdate = this.books.find((book) => book.id === bookId);
+		
+		if(bookToUpdate) {
+			bookToUpdate.stars = newRating;
+			this.bookService.updateBookbyBookId(bookId,bookToUpdate);
+		}
+	}
+	
+	
 }
