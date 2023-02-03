@@ -141,12 +141,14 @@ router.get('/add/:isbn', async (req, res) => {
 });
 
 router.get('/addAdvancedSearch/:searchTerm', async (req, res) => {
-    console.log("try")
     try {
         const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${req.params.searchTerm}`);
         const books = response.data.items;
-        const titles = books.map((book:any) => book.volumeInfo.title);
-        res.send(titles)
+        const isbns:string[] = books.map((book:any) => book.volumeInfo.industryIdentifiers);
+        const titles:string[] = books.map((book:any) => book.volumeInfo.title);
+        const authors:string[] = books.map((book:any) => book.volumeInfo.authors || "Unknown Author");
+    
+        res.send({isbns:isbns,titles:titles,authors:authors})
     } catch (error) {
         console.error(`Error searching for books: ${error}`);
     }

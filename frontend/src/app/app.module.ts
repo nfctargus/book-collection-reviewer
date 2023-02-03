@@ -43,8 +43,9 @@ import { LoginComponent } from './components/pages/login/login.component';
 	ToastrModule.forRoot({
 		timeOut:2000,
 		positionClass:'toast-bottom-right'
-	})
+	}),
   ],
+  
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass: LoadingInterceptor,multi:true}
   ],
