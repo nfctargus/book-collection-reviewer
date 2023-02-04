@@ -2,14 +2,8 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BookService } from 'src/app/services/book.service';
-import { FormArray, FormGroup } from '@angular/forms';
-import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
+import { IBook } from 'src/app/shared/interfaces/IBook';
 
-export interface StepType {
-	label: string;
-	fields: FormlyFieldConfig[];
-  }
-  
 @Component({
 	selector: 'app-add-item-page',
 	templateUrl: './add-item-page.component.html',
@@ -17,45 +11,41 @@ export interface StepType {
 })
 export class AddItemPageComponent {
 	@Input()
-	isbn:string = '';
+	selectedBookIsbn: string = '';
 	@Input()
-	title:string = '';
+	title?:string = '';
 	@Input()
-	author:string = '';
+	imageUrl?:string = '';
 	@Input()
-	searchResults:String[] = [];
-
-	page = 1;
+	matchingBooks:IBook[] = [];
 
 	constructor(activatedRoute:ActivatedRoute,private bookService:BookService,private router:Router,private toastr: ToastrService) {
 		activatedRoute.params.subscribe((params) => {
-			if(params['isbn']) this.isbn = params['isbn'];
+			if(params['isbn']) this.selectedBookIsbn = params['isbn'];
 		})
 	}
-	addBookByIsbn(isbn:string) {
-		if(isbn) 
-		this.bookService.addNewBookByIsbn(isbn)
-		this.toastr.success(`Book with ISBN: ${isbn} has been added!!`, 'Successfully Added');
+	addBookByIsbn() {
+
+		this.bookService.addNewBookByIsbn(this.selectedBookIsbn)
+		this.toastr.success(`Book with ISBN: ${this.selectedBookIsbn} has been added!!`, 'Successfully Added');
 		this.router.navigateByUrl("/");
 	}
 	lookupBooksByTitle(title:string) {
-		if(title.length > 3) {
+		if(title.length > 2) {
+			this.matchingBooks = [];
 			this.bookService.getBookByTitle(title).subscribe((data) => {
-				this.searchResults = data;
-				alert(JSON.stringify(this.searchResults))
+				data.forEach((book) => {
+					this.matchingBooks.push(book);
+				})
 			});
-		}
-		else {
+		} else {
 			return
 		}
 	}
-	nextPage() {
-		this.page+=1;
+	selectChangeHandler (event: any) {
+		this.selectedBookIsbn = event.target.value;
+		const selectedBook:IBook[] = this.matchingBooks.filter(book => book.isbn === event.target.value)
+		this.imageUrl = selectedBook.find((book) => book.isbn === this.selectedBookIsbn)?.imageUrl
+		this.title = selectedBook.find((book) => book.isbn === this.selectedBookIsbn)?.title
 	}
-	prevPage() {
-		this.page-=1;
-	}
-
-	
-
 }

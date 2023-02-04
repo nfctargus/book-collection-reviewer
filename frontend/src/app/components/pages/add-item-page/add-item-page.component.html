@@ -1,30 +1,23 @@
 <div class="container">
+	<app-title title="Add a new Book" margin="4rem 0 2rem 0" fontSize="2.5rem"></app-title>
 	<div class="content">
-		<app-title title="Add a new Book" margin="4rem 0 2rem 0" fontSize="2.5rem"></app-title>
 		<h2>Get started by entering a Book Title</h2>
 		<h3>Or quick add by entering the ISBN</h3>
 		<form class="addBookForm">
-			<div *ngIf="page === 1" class="firstPage">
-				<label for="isbn">ISBN</label>
-				<input id="ISBN" #s type="text" [value]="isbn" />
-				<label for="title" >Title</label>
+			<div class="formWrapper">
+				<label for="isbn">Search by ISBN:</label>
+				<input id="ISBN" #s type="text" [value]="selectedBookIsbn" />
+				<label for="title" >Search by Title:</label>
 				<input id="title" #t (change)="lookupBooksByTitle(t.value)" type="text"/>
-				<label for="results" *ngIf="t.value">Search Results</label>
-				<select id="results" *ngIf="t.value">
-					<option *ngFor="let result of searchResults" [value]="result">{{result}}</option>
+				<label for="results" *ngIf="t.value">Search Results:</label>
+				<select id="results" *ngIf="t.value" (change)="selectChangeHandler($event)">
+					<option *ngFor="let result of matchingBooks" [value]="result.isbn">{{result.title + " by " + result.author + " (ISBN: " + result.isbn + ")"}}</option>
 				</select>
-				<button (click)="nextPage()">Next</button>
+				<button (click)="addBookByIsbn()">Add</button>
 			</div>
-			<div *ngIf="page === 2" class="secondPage">
-				<label for="author">Author</label>
-				<input id="author" type="text"/>
-				<label for="title">Title</label>
-				<input id="title" type="text" [value]="title"/>
-				<label for="isbn">Title</label>
-				<input id="isbn" type="text" [value]="isbn"/>
-				<button (click)="prevPage()">Back</button>
-				<button #s (click)="addBookByIsbn(s.value)">Add</button>
-			</div>			
+			<div class="pic" *ngIf="imageUrl">
+				<img alt="BookCover" [src]="imageUrl"/>
+			</div>
 		</form>
 	</div>
 </div>

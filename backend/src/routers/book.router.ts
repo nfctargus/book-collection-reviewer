@@ -133,7 +133,7 @@ router.get('/add/:isbn', async (req, res) => {
         }); 
         
         await newBook.save();
-        res.send(`Book with ISBN ${isbn} saved successfully`);
+        res.send();
 
     } catch (error) {
         res.status(500).send(error);
@@ -144,13 +144,25 @@ router.get('/addAdvancedSearch/:searchTerm', async (req, res) => {
     try {
         const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${req.params.searchTerm}`);
         const books = response.data.items;
-        const isbns:string[] = books.map((book:any) => book.volumeInfo.industryIdentifiers);
-        const titles:string[] = books.map((book:any) => book.volumeInfo.title);
-        const authors:string[] = books.map((book:any) => book.volumeInfo.authors || "Unknown Author");
-    
-        res.send({isbns:isbns,titles:titles,authors:authors})
+
+		let matchingBooks:{isbn:string,title:string,author:string,imageUrl:string}[] = [];
+		books.map((book:any) => {
+			const aBook = {
+				isbn: book.volumeInfo.industryIdentifiers
+                ?.find((identifier:any) => identifier.type === "ISBN_13" ||  identifier.type === "ISBN_10")
+                ?.identifier,
+				title: book.volumeInfo.title ? book.volumeInfo.title : 'Unknown Title',
+				author: book.volumeInfo.authors ? book.volumeInfo.authors : "Unknown Author",
+				imageUrl: book.volumeInfo.imageLinks?.thumbnail ? book.volumeInfo.imageLinks?.thumbnail : "/",
+			}; 
+			matchingBooks.push(aBook);
+
+		})
+        res.send(matchingBooks)
+		
+        
     } catch (error) {
-        console.error(`Error searching for books: ${error}`);
+        console.log(`Error searching for books: ${error}`);
     }
 }); 
 
