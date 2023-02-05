@@ -8,12 +8,14 @@
 				<label for="isbn">Search by ISBN:</label>
 				<input id="ISBN" #s type="text" [value]="selectedBookIsbn" />
 				<label for="title" >Search by Title:</label>
-				<input id="title" #t (change)="lookupBooksByTitle(t.value)" type="text"/>
+				<input id="title" #t type="text" [value]="t.value"/>
+				<button (click)="lookupBooksByTitle(t.value)" *ngIf="!t.value">Search</button>
 				<label for="results" *ngIf="t.value">Search Results:</label>
 				<select id="results" *ngIf="t.value" (change)="selectChangeHandler($event)">
 					<option *ngFor="let result of matchingBooks" [value]="result.isbn">{{result.title + " by " + result.author + " (ISBN: " + result.isbn + ")"}}</option>
 				</select>
-				<button (click)="addBookByIsbn()">Add</button>
+
+				<button *ngIf="selectedBookIsbn" (click)="addBookByIsbn()">Add</button>
 			</div>
 			<div class="pic" *ngIf="imageUrl">
 				<img alt="BookCover" [src]="imageUrl"/>

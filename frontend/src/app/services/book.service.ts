@@ -33,9 +33,14 @@ export class BookService {
 	updateBookbyBookId(bookId:string,updatedBook:Book){
 		this.http.put(BOOK_BY_ID_URL + bookId,updatedBook).subscribe();
 	}
-	addNewBookByIsbn(isbn:string) {
-		this.http.get(ADD_BOOK_URL + isbn)
-
+	addNewBookByIsbn(isbn:string):Observable<Object> {
+		return this.http.get(ADD_BOOK_URL + isbn).pipe(
+			((error) => {
+			  console.error(error);
+			  this.toastrService.error(JSON.stringify(error), 'Error');
+			  return error;
+			})
+		  );
 	}
 	getBookByTitle(title:string):Observable<IBook[]> {
 		return this.http.get<IBook[]>(SEARCH_BOOK_BY_TITLE_URL + title);

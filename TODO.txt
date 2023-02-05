@@ -1,0 +1,11 @@
+1. Fix bugs / bug handling
+
+2. Mobile friendly pages
+
+3. Fix Book pages
+
+4. Light / Dark themes
+
+5. Research better API
+
+6. Books based on logged in user??

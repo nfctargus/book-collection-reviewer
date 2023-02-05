@@ -4,6 +4,13 @@
 	justify-content: space-evenly;
 	flex-wrap: wrap;
 	color:#fff;
+
+}
+
+@media only screen and (max-width: 600px){
+			.container {
+
+			}
 }
 
 .bookPanel {

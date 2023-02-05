@@ -25,18 +25,25 @@ export class AddItemPageComponent {
 		})
 	}
 	addBookByIsbn() {
-
-		this.bookService.addNewBookByIsbn(this.selectedBookIsbn)
-		this.toastr.success(`Book with ISBN: ${this.selectedBookIsbn} has been added!!`, 'Successfully Added');
-		this.router.navigateByUrl("/");
+		this.bookService.addNewBookByIsbn(this.selectedBookIsbn).pipe(
+			(error => {
+				return error;
+			})
+		).subscribe({complete: console.info});
 	}
+
 	lookupBooksByTitle(title:string) {
-		if(title.length > 2) {
+		if(title) {
 			this.matchingBooks = [];
-			this.bookService.getBookByTitle(title).subscribe((data) => {
-				data.forEach((book) => {
+			this.bookService.getBookByTitle(title).subscribe(
+				(data) => {
+					data.forEach((book) => {
 					this.matchingBooks.push(book);
-				})
+				}),
+				(error:any) => {
+					console.log(error)
+					console.log(error.type)
+				}
 			});
 		} else {
 			return

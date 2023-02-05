@@ -117,11 +117,19 @@ router.put('/:bookId', (req, res) => {
     })
 })
 
-router.get('/add/:isbn', async (req, res) => {
+router.get('/add/:isbn', expressAsyncHandler(async (req, res) => {
     const isbn = req.params.isbn;
     try {
         const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`);
+
+        if (!response.data || !response.data.items || !response.data.items[0] || !response.data.items[0].volumeInfo) {
+            res.status(400).send('Invalid data received from API');
+        }
         const bookData = response.data.items[0].volumeInfo;
+        if (!bookData.title || !bookData.authors || !bookData.imageLinks || !bookData.imageLinks.thumbnail || !bookData.categories) { 
+            res.status(400).send('Required data is missing from the API response');
+        }
+
         const newBook = new BookModel({
             isbn: isbn,
             title: bookData.title,
@@ -134,11 +142,12 @@ router.get('/add/:isbn', async (req, res) => {
         
         await newBook.save();
         res.send();
-
+       
     } catch (error) {
+        console.log(error);
         res.status(500).send(error);
     }
-});
+}));
 
 router.get('/addAdvancedSearch/:searchTerm', async (req, res) => {
     try {
