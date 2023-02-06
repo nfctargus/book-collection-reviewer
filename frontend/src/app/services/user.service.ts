@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
-import { USER_LOGIN_URL } from '../shared/models/constants/urls';
+import { USER_LOGIN_URL, USER_UPDATE_URL } from '../shared/models/constants/urls';
 import { User } from '../shared/models/User';
 
 const USER_KEY = 'User';
@@ -41,6 +41,10 @@ export class UserService {
 		this.userSubject.next(new User());
 		localStorage.removeItem(USER_KEY);
 		window.location.reload();
+	}
+	updateUser(user:User):Observable<User> {
+		this.setUserToLocalStorage(user);
+		return this.http.put<User>(USER_UPDATE_URL,user);
 	}
 	private setUserToLocalStorage(user:User) {
 		localStorage.setItem(USER_KEY,JSON.stringify(user));

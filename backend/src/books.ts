@@ -95,14 +95,12 @@ export const sample_users: any[] = [
         name: "John Doe",
         email: "john@gmail.com",
         password: "12345",
-        address: "Toronto On",
-        isAdmin: true,
     },
     {
         name: "Jane Doe",
         email: "jane@gmail.com",
         password: "12345",
-        address: "Shanghai",
-        isAdmin: false,
+		favourites:["174261180X","9780345534835"],
+		theme:"dark"
     },
 ];

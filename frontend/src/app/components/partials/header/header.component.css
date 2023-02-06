@@ -60,3 +60,61 @@ button:hover {
 	opacity: 0.8;
 
 }
+
+
+.toggle {
+	border-radius:5px;
+	display:flex;
+	position:relative;
+	width:5rem;
+	height:2rem; 
+	background:blue;
+	margin:2rem;
+}
+.toggle + label .card{
+
+	background-color: red;
+}
+
+.toggle:after, .toggle:before {
+	flex:1;
+	text-align:center;
+	line-height:2rem;
+	font-size:0.8rem;
+}
+.toggle:after {
+	content:"dark";
+}
+.toggle:before {
+	content:"light";
+}  
+label {
+	position:absolute;
+	top:0; 
+	bottom:0;
+	left:0; 
+	right:0; 
+	cursor:pointer;
+}
+  
+  /* Dark */
+.card {
+	position:relative;
+	background:#00a82a;
+	transition:0.4s;
+	width:50%;
+	height:2rem;
+}
+
+input { display:none; }
+input:checked + label .card { 
+	background:#05949e; 
+}
+  
+.slide .card { 
+	transform:translate(0); 
+}
+.slide input:checked + label .card 
+{
+	transform:translateX(2.5rem);
+}

@@ -35,7 +35,7 @@ export class LoginComponent {
 		if(this.loginForm.invalid) return;
 
 		this.userService.login({email:this.fc['email'].value,password:this.fc['password'].value}).subscribe(()=> {
-			this.router.navigateByUrl('/library');
+			this.router.navigateByUrl('/');
 		});
 	}
 	logout() {

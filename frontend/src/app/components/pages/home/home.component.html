@@ -7,7 +7,7 @@
 			<h5 class="title">{{book.title}}</h5>
 			<div class="star">
 				<ngb-rating [max]="5" [(rate)]="book.stars" (rateChange)="changeRating(book.id,book.stars)"></ngb-rating>
-				<img id="favouriteImg" (click)="updateFavourite(book.id)" src="{{book.favourite?'/assets/favourite.svg':'/assets/notFavourite.svg'}}"/>
+				<img id="favouriteImg" (click)="updateUserFavourite(book.isbn)" src="{{isFav(book.isbn)?'/assets/favourite.svg':'/assets/notFavourite.svg'}}"/>
 			</div>
 		</div>
 	</div>

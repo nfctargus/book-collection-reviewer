@@ -25,4 +25,13 @@ export class HeaderComponent {
 	get isAuth() {
 		return this.user.token;
 	}
+	public changeTheme() {
+		if(this.user.theme === 'dark') {
+			this.user.theme = 'light'
+		} else {
+			this.user.theme = 'dark';
+		}
+		this.userService.updateUser(this.user).subscribe()
+		console.log("Theme is now: " + this.user.theme)
+	}
 }

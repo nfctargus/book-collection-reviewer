@@ -18,18 +18,16 @@ router.get("/seed",expressAsyncHandler(async (req,res) => {
     res.send("Populated the database with sample data");
 }))
 
-//Log in (local)
-/* router.post("/login", (req,res) => {
-    const { email, password} = req.body;
-    const user = sample_users.find(user => user.email === email && user.password === password);
-    if(user) {
-        res.send(generateTokenResponse(user))
-    }
-    else {
-        res.status(400).send("Username or password is incorrect.")
-    }
-}) */
-//Log in (mongo)
+router.put("/update",expressAsyncHandler(async (req,res) => {
+    const selectedUser = req.body;
+    UserModel.findOneAndUpdate({email:selectedUser.email},{name:selectedUser.name,email:selectedUser.email,favourites:selectedUser.favourites,theme:selectedUser.theme}, (error:any,data:any) => {
+        if(error) {
+            console.log(error)
+        } else {
+            res.status(200).send();
+        }
+    })
+}))
 router.post("/login", expressAsyncHandler(async (req,res) => {
     const { email, password} = req.body;
     const user = await UserModel.findOne({email,password});
@@ -52,7 +50,10 @@ const generateTokenResponse = (user:any) => {
         id: user.id,
         email:user.email,
         name:user.name,
-        token:token
+        token:token,
+        favourites:user.favourites,
+        ratings:user.ratings,
+        theme:user.theme,
     }
 }
 export default router;

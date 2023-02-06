@@ -8,4 +8,4 @@
 
 5. Research better API
 
-6. Books based on logged in user??
+6. Favourites based on logged in user [x]

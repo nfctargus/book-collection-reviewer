@@ -2,7 +2,9 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BookService } from 'src/app/services/book.service';
+import { UserService } from 'src/app/services/user.service';
 import { Book } from 'src/app/shared/models/Book';
+import { User } from 'src/app/shared/models/User';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +13,11 @@ import { Book } from 'src/app/shared/models/Book';
 })
 export class HomeComponent {
 	books:Book[] = [];
-	constructor(private bookService:BookService,activatedRoute:ActivatedRoute) {
+	user:User = this.userService.currentUser;
+
+	constructor(private bookService:BookService,activatedRoute:ActivatedRoute,private userService:UserService) {
 		let booksObservable:Observable<Book[]>;
+		let userObservable:Observable<User>;
 		activatedRoute.params.subscribe((params) => {
 			if(params['searchTerm']) {
 				booksObservable = this.bookService.getAllBooksBySearchTerm(params['searchTerm']);
@@ -23,8 +28,8 @@ export class HomeComponent {
 			}
 			booksObservable.subscribe((serverBooks) => {
 				this.books = serverBooks;
-
 			})
+			this.user = this.userService.currentUser;
 		})
 	}
 	public updateFavourite(bookId:string) {
@@ -35,6 +40,19 @@ export class HomeComponent {
 			this.bookService.updateBookbyBookId(bookId,bookToUpdate)
 		}		
 	}
+	public updateUserFavourite(isbn:string) {
+		if(!isbn) return;
+		this.user.favourites?.push(isbn);
+		this.userService.updateUser(this.user).subscribe()
+	}
+	public isFav(isbn:string):boolean {
+		if (this.user.favourites?.find((userFav) => userFav === isbn)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public changeRating(bookId:string,newRating:number) {
 		const bookToUpdate = this.books.find((book) => book.id === bookId);
 		
