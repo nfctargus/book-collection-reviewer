@@ -2,7 +2,7 @@
 
 2. Mobile friendly pages
 
-3. Fix Book pages
+3. Fix Book pages [x]
 
 4. Light / Dark themes
 

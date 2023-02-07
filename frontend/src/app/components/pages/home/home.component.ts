@@ -32,18 +32,17 @@ export class HomeComponent {
 			this.user = this.userService.currentUser;
 		})
 	}
-	public updateFavourite(bookId:string) {
-		const bookToUpdate = this.books.find((book) => book.id === bookId);
-		
-		if(bookToUpdate) {
-			bookToUpdate.favourite = !bookToUpdate.favourite;
-			this.bookService.updateBookbyBookId(bookId,bookToUpdate)
-		}		
-	}
+
 	public updateUserFavourite(isbn:string) {
 		if(!isbn) return;
-		this.user.favourites?.push(isbn);
-		this.userService.updateUser(this.user).subscribe()
+		if(this.user.favourites?.find((fav) => fav === isbn)) {
+			this.user.favourites = this.user.favourites.filter((fav) => fav !== isbn)
+			this.userService.updateUser(this.user).subscribe()
+		}
+		else {
+			this.user.favourites?.push(isbn);
+			this.userService.updateUser(this.user).subscribe()
+		}
 	}
 	public isFav(isbn:string):boolean {
 		if (this.user.favourites?.find((userFav) => userFav === isbn)) {

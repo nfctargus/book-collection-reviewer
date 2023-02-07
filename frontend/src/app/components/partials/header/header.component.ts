@@ -11,7 +11,6 @@ import { User } from 'src/app/shared/models/User';
 })
 export class HeaderComponent {
 	user!:User;
-
 	constructor(private formBuilder:FormBuilder,private userService:UserService,private router:Router) {
 		userService.userObservable.subscribe((newUser) => {
 			this.user = newUser;

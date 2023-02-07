@@ -27,21 +27,22 @@ label {
 input {
     outline:none;
     border: none;
-    background:rgba(100,100,100,0.5);
-    color:#ccc;
-    padding-left:0.5rem;
+    padding-left: 1rem;
+    border-radius: 1.5rem;
+
     height:2rem;
 }
+
 input:invalid {
     border:1px solid red;
 }
 button {
-    height:3rem;
+    height:2.5rem;
     width:50%;
-    background-color: #ccc;
+    margin-top:0.5rem;
     outline:none;
     border:none;
-    border-radius: 10px;
+    border-radius: 1.5rem;
 }
 button:hover {
     opacity: 0.8;

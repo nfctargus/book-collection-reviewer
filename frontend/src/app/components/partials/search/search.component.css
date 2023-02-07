@@ -18,28 +18,27 @@
 }
 .search input {
 	max-width:20rem;
-	border: 1px solid #ccc;
-	background: rgba(70, 70, 70, 0.8);
+	border: none;
 	outline:none;
 	height:2.5rem;
 	font-size:1.1rem;
 	padding-left: 1rem;
-	color:#ccc;
+	color:#242424;
 }
 
 .search button {
 	border-radius: 0 1rem 1rem 0;
-	border: 1px solid #ccc;
-	border-left:none;
-	background: rgba(70, 70, 70, 0.8);
+	border:none;
 	outline:none;
 	height:2.5rem;
+	background:#ccc;
+	width:2.5rem;
 }
 .categories button {
 	border-radius: 1rem 0 0 1rem;
-	border: 1px solid #ccc;
-	border-right:none;
-	background: rgba(70, 70, 70, 0.8);
+	background:#ccc;
+	width:2.5rem;
+	border: none;
 	outline:none;
 	height:2.5rem;
 }
@@ -55,7 +54,7 @@
 
 .categoriesList {
 	position: absolute;
-	background-color: #f6f6f6;
+	background-color: #ccc;
 	min-width: 230px;
 	overflow: auto;
 	border: 1px solid #ddd;

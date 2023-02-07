@@ -10,20 +10,22 @@
 			<li>
 				<a routerLink="/add"><img src="/assets/add.svg" alt="Add"></a>
 			</li>
-			<li *ngIf="isAuth">
-				<button (click)="logout()" routerLink="">Logout</button>
+			<li *ngIf="isAuth" class="account">
+				<a class="userName">{{user.name}}</a>
+				<div class="accPanel">
+					<a routerLink="/">Account</a>
+					<a routerLink="/login" (click)="logout()">Logout</a>
+				</div>
+			</li>
+			<li *ngIf="!isAuth">
+				<a routerLink="/login"><img src="/assets/profile.svg" alt="Log In"></a>
 			</li>
 			<li>
-				<figure>
-					<div class="toggle slide">
-						<input id="c" type="checkbox" />
-						<label for="c">
-						<div class="card slide"></div>    
-						</label>
-					</div>
-				</figure>
+				<div class="themeBox">
+					<div class="light">Light</div>
+					<div class="dark">Dark</div>
+				</div>
 			</li>
 		</ul>
-
 	</div>
 </div>
