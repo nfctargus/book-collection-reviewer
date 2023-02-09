@@ -92,12 +92,14 @@ export const sample_categories: any[] = [
 
 export const sample_users: any[] = [
     {
-        name: "John Doe",
+        firstName: "John",
+        surname: "Smith",
         email: "john@gmail.com",
         password: "12345",
     },
     {
-        name: "Jane Doe",
+        firstName: "Jane",
+		surname: "Doe",
         email: "jane@gmail.com",
         password: "12345",
 		favourites:["174261180X","9780345534835"],

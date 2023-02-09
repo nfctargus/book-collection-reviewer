@@ -3,7 +3,7 @@
 	<div class="content">
 		<h2>Get started by entering a Book Title</h2>
 		<h3>Or quick add by entering the ISBN</h3>
-		<form class="addBookForm" [formGroup]="addItemForm" (ngSubmit)="lookupBooksByTitle()">
+		<form class="addBookForm" [formGroup]="addItemForm">
 			<div class="formWrapper">
 				<label for="isbn">Search by ISBN:</label>
 				<input id="ISBN" type="text" formControlName="isbn" />

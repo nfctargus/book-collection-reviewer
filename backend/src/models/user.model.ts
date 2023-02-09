@@ -4,14 +4,16 @@ export interface User {
     id:string;
 	email:string;
     password:string;
-	name:string;	
+	firstName:string;	
+    surname:string;
     favourites:string[];
     ratings:[bookIsbn:string,bookRating:number];
     theme:string;
 }
 export const UserSchema = new Schema<User>(
     {
-        name:{type:String,required:true},
+        firstName:{type:String,required:true},
+        surname:{type:String,required:true},
         email:{type:String,required:true,unique:true},
         password:{type:String,required:true},
         favourites:{type:[String]},

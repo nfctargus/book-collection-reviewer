@@ -1,0 +1,4 @@
+<div [ngClass]="{'boxContainer': !isStatic,'boxContainerStatic': isStatic}" (click)="buttonClicked()">
+    <div [ngClass]="{'topBox': !isStatic,'topBoxStatic': isStatic}">{{message1}}</div>
+    <div *ngIf="!isStatic" class="bottomBox">{{message2}}</div>
+</div>

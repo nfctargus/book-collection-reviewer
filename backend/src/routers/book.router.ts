@@ -1,5 +1,5 @@
 import axios from "axios";
-import { request, Router } from "express";
+import { Router } from "express";
 import expressAsyncHandler from "express-async-handler";
 import { sample_books, sample_categories } from "../books";
 import { BookModel } from "../models/book.model";
@@ -41,7 +41,8 @@ router.get("/seed",expressAsyncHandler(async (req,res) => {
 //Get a book based on a search, checks Book Name & Author (Mongo)
 router.get("/search/:searchTerm", expressAsyncHandler(async (req,res) => {
     const regEx = new RegExp(req.params.searchTerm, 'i');
-    const books = await BookModel.find({title: {$regex:regEx}})
+    const books = await BookModel.find({$or:[{title: {$regex:regEx}},{author:{$regex:regEx}}]})
+    
     res.send(books);
 }))
 
@@ -76,7 +77,7 @@ router.get("/categories",expressAsyncHandler(async (req,res) => {
         count: await BookModel.countDocuments()
     }
     categories.unshift(all);
-    res.send(sample_categories);
+    res.send(categories);
 }))
 
 //Get all books by provided category (local)
@@ -148,6 +149,16 @@ router.get('/add/:isbn', expressAsyncHandler(async (req, res) => {
         res.status(500).send(error);
     }
 }));
+
+router.delete('/delete/:isbn',expressAsyncHandler(async (req,res) => {
+    console.log("Deleting book with ISBN: " + req.params.isbn)
+    try {
+        await BookModel.deleteOne({isbn:req.params.isbn})
+    }
+    catch (err) {
+        console.log(err)
+    }
+}))
 
 router.get('/addAdvancedSearch/:searchTerm', async (req, res) => {
     try {

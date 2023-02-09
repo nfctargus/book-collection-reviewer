@@ -24,6 +24,8 @@
 	font-size:1.1rem;
 	padding-left: 1rem;
 	color:#242424;
+	border-right:1px solid #242424;
+	border-left:1px solid #242424;
 }
 
 .search button {
@@ -31,12 +33,12 @@
 	border:none;
 	outline:none;
 	height:2.5rem;
-	background:#ccc;
+	background:#fff;
 	width:2.5rem;
 }
 .categories button {
 	border-radius: 1rem 0 0 1rem;
-	background:#ccc;
+	background:#fff;
 	width:2.5rem;
 	border: none;
 	outline:none;

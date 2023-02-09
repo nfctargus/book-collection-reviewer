@@ -3,6 +3,8 @@ import { Book } from 'src/app/shared/models/Book';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
 import { Category } from 'src/app/shared/models/Category';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/shared/models/User';
 
 @Component({
   selector: 'app-book-page',
@@ -12,7 +14,8 @@ import { Category } from 'src/app/shared/models/Category';
 export class BookPageComponent {
 	book!:Book;
 	categories?:string[];
-	constructor(activatedRoute:ActivatedRoute,private bookService:BookService) {
+	user:User = this.userService.currentUser;
+	constructor(activatedRoute:ActivatedRoute,private bookService:BookService,private router:Router,private userService:UserService) {
 
 		activatedRoute.params.subscribe((params) => {
 			if(params['id']) {
@@ -22,9 +25,23 @@ export class BookPageComponent {
 				});
 			}
 		})
+		this.user = this.userService.currentUser;
 	}
 
 	toggleFavourite(bookId:string) {
 		alert(bookId)
+	}
+	deleteBook() {
+		const bookIsbn = this.book.isbn;
+		this.bookService.deleteBook(bookIsbn);
+		alert("Book with ISBN: " + bookIsbn + " has been deleted.")
+		this.router.navigateByUrl("/")
+	}
+	public isFav(isbn:string):boolean {
+		if (this.user.favourites?.find((userFav) => userFav === isbn)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

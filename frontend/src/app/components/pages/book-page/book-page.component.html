@@ -2,12 +2,15 @@
 <div *ngIf="book" class="container">
 	<div class="bookImage">
 		<img [src]="book.imageUrl" [alt]="book.title">
+		
 	</div>
+	
 	<div class="content">
-		<h1>{{book.title}}<img (click)="toggleFavourite(book.id)" src="{{book.favourite?'/assets/favourite.svg':'/assets/notFavourite.svg'}}"/></h1>
+		<h1>{{book.title}}<img (click)="toggleFavourite(book.id)" src="{{isFav(book.isbn)?'/assets/favourite.svg':'/assets/notFavourite.svg'}}"/> </h1>
 		<h2>{{book.author}}</h2>
 		<div class="rating">
-			<ngb-rating [max]="5" [(rate)]="book.stars"></ngb-rating>
+			<ngb-rating [max]="5" [readonly]='true' [(rate)]="book.stars"></ngb-rating>
+			<button class="delete" (click)="deleteBook()"></button>
 		</div>
 		<div class="categories">
 			<h3>Categories:</h3>
@@ -15,6 +18,7 @@
 				{{category}}
 			</span>
 		</div>
+		
 
 	</div>
 </div>

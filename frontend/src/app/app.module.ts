@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/pages/home/home.component';
 import { AddItemPageComponent } from './components/pages/add-item-page/add-item-page.component';
-import { CategoriesComponent } from './components/partials/categories/categories.component';
 import { HeaderComponent } from './components/partials/header/header.component';
 import { LoadingComponent } from './components/partials/loading/loading.component';
 import { TitleComponent } from './components/partials/title/title.component';
@@ -18,20 +17,21 @@ import { ErrorComponent } from './components/partials/error/error.component';
 import { ToastrModule } from 'ngx-toastr';
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { LoginComponent } from './components/pages/login/login.component';
+import { ThreedboxComponent } from './components/threedbox/threedbox.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-	SearchComponent,
+    SearchComponent,
     AddItemPageComponent,
-    CategoriesComponent,
     HeaderComponent,
     LoadingComponent,
     TitleComponent,
     BookPageComponent,
     ErrorComponent,
     LoginComponent,
+    ThreedboxComponent,
   ],
   imports: [
     BrowserModule,

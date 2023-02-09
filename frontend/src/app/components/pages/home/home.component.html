@@ -1,6 +1,6 @@
 <app-search></app-search>
-<div class="container">
-	<div class="bookPanel" *ngFor="let book of books">
+<div class="cards">
+	<div class="card" *ngFor="let book of books">
 		<img id="bookImage" [src]="book.imageUrl" [alt]="book.title" routerLink="/books/{{book.id}}"/>
 		<div class="bookDescription">
 			<span class="author">{{book.author}}</span>
@@ -12,4 +12,3 @@
 		</div>
 	</div>
 </div>
-	

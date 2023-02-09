@@ -1,0 +1,55 @@
+.topBox {
+	background-color: #ccc;
+	color:#242424;
+	transform: translateZ(1.25rem);
+}
+
+.bottomBox {
+	background-color: #242424;
+	color:#ccc;
+	transform: rotateX(-90deg) translateZ(-1.25rem);
+}
+.topBox,.bottomBox {
+	display: grid;
+	place-items: center;
+	height:2.5rem;
+	border-radius:5px;
+	border:1px solid #ccc;
+}
+.bottomBox:active {
+    opacity: 0.8;
+}
+.boxContainer {
+	width:6rem;
+	height:2.5rem;
+	transform-style: preserve-3d;
+	transition: transform 0.35s;
+	font-weight:800;
+	font-size:0.8rem;
+    cursor: pointer;
+}
+.boxContainer:hover {
+	transform: rotateX(90deg);
+}
+.boxContainerStatic {
+    width:6rem;
+	height:2.5rem;
+    font-weight:800;
+	font-size:0.8rem;
+    transition:none;
+    transform: none;
+    cursor: pointer;
+}
+
+.topBoxStatic {
+    background-color: #ddd;
+	color:#242424;
+    display: grid;
+    height:2.5rem;
+	place-items: center;
+	border-radius:5px;
+	border:1px solid #ccc;
+}
+.topBoxStatic:hover {
+    opacity: 0.8;
+}

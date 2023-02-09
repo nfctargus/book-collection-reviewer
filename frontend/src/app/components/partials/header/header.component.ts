@@ -18,8 +18,12 @@ export class HeaderComponent {
 	}
 
 	logout() {
-		this.userService.logout();
-		this.router.navigateByUrl("");
+		if(this.user.token) {
+			this.userService.logout();
+			this.router.navigateByUrl("");
+		} else {
+			//do nothing
+		}	
 	}
 	get isAuth() {
 		return this.user.token;

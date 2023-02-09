@@ -1,4 +1,4 @@
-1. Fix bugs / bug handling
+1. Fix bugs / bug handling [x]
 
 2. Mobile friendly pages
 
@@ -6,6 +6,6 @@
 
 4. Light / Dark themes
 
-5. Research better API
+5. Research better API [x]
 
 6. Favourites based on logged in user [x]

@@ -27,7 +27,7 @@ export class UserService {
 					this.setUserToLocalStorage(user);
 					this.userSubject.next(user);
 					this.toastrService.success(
-						`Now logged in as ${user.name}`,
+						`Now logged in as ${user.firstName}`,
 						"Login Successful"
 					)
 				},

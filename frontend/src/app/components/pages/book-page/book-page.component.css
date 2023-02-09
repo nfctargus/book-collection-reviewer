@@ -18,6 +18,19 @@
 	align-items: center;
 	height: 75vh;
 }
+.delete {
+	width:40px;
+	height:40px;
+	border-radius: 50%;
+	background-color: transparent;
+	background:no-repeat center url("/assets/delete.svg");
+	border: 1px solid #fff;
+}
+.delete:hover {
+	opacity: 0.8;
+	cursor: pointer;
+	box-shadow: 0 0px 2px 1px #ffffffac;
+}
 .content {
 	display: flex;
 	width:50%;
@@ -42,6 +55,9 @@ h1 img {
 }
 .rating {
 
+	justify-content: space-around;
+	align-items: center;
+	display: flex;
 	height:2rem;
 	width:50%;
 	margin:2rem 1rem 0 0;

@@ -10,21 +10,8 @@
 			<li>
 				<a routerLink="/add"><img src="/assets/add.svg" alt="Add"></a>
 			</li>
-			<li *ngIf="isAuth" class="account">
-				<a class="userName">{{user.name}}</a>
-				<div class="accPanel">
-					<a routerLink="/">Account</a>
-					<a routerLink="/login" (click)="logout()">Logout</a>
-				</div>
-			</li>
-			<li *ngIf="!isAuth">
-				<a routerLink="/login"><img src="/assets/profile.svg" alt="Log In"></a>
-			</li>
 			<li>
-				<div class="themeBox">
-					<div class="light">Light</div>
-					<div class="dark">Dark</div>
-				</div>
+				<app-threedbox [message1]="isAuth? user.firstName : 'Login'" message2="Logout" [isStatic]="isAuth? false : true"></app-threedbox>
 			</li>
 		</ul>
 	</div>

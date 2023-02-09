@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -25,7 +25,6 @@ export class AddItemPageComponent implements OnInit{
 			isbn:[''],
 			title:[''],
 			url:[''],
-			
 		})
 	}
 	get fc() {
@@ -39,6 +38,10 @@ export class AddItemPageComponent implements OnInit{
 				return error;
 			})
 		).subscribe({complete: console.info});
+		setTimeout(() => {
+			this.router.navigateByUrl('/');
+		},1500)
+		
 	}
 
 	lookupBooksByTitle() {
@@ -48,24 +51,18 @@ export class AddItemPageComponent implements OnInit{
 		//If ISBN field has value, skip the search and just add the book
 		if(isbn) {
 			this.addBookByIsbn() 
-			return;
-		}
-		if(title) {
+		} else if(title) {
 			this.matchingBooks = [];
 			this.bookService.getBookByTitle(title).subscribe(
 				(data) => {
 					data.forEach((book) => {
 					this.matchingBooks.push(book);
 					this.isSubmitted = true;
-					
 				}),
 				(error:any) => {
 					console.log(error)
-					console.log(error.type)
 				}
 			});
-
-			
 		} else {
 			return
 		}

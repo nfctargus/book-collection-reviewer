@@ -42,14 +42,15 @@ router.post("/login", expressAsyncHandler(async (req,res) => {
 const generateTokenResponse = (user:any) => {
     const token = jwt.sign({
         id: user.id,email:user.email
-    },"PrivateKey",{
+    },process.env.USER_KEY!,{
         expiresIn:"30d"
     })
 
     return {
         id: user.id,
         email:user.email,
-        name:user.name,
+        firstName:user.firstName,
+        surname:user.surname,
         token:token,
         favourites:user.favourites,
         ratings:user.ratings,
