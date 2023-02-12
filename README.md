@@ -19,11 +19,11 @@ PW: 12345
 
 # How can I run this?
 Back End:
-cd backend
-npm install 
-npm start
+- cd backend
+- npm install 
+- npm start
 
 Front End:
-cd frontend 
-npm install
-ng serve -o
+- cd frontend 
+- npm install
+- ng serve -o
