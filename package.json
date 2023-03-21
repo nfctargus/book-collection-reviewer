@@ -1,0 +1,10 @@
+{
+  "name": "book-collection-reviewer",
+  "version": "1.0.0",
+  "description": "A tool designed to keep track of your probably unhealthy book collection.",
+  "scripts": {
+    "start":"cd backend/build && node server.js",
+    "prebuild": "cd backend && npm run build",
+    "build": "cd frontend && npm run build"
+  },
+}
