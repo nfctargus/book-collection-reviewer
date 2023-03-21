@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = environment.production ? '' : 'http://localhost:5000';
 
 export const BOOKS_URL = BASE_URL + '/api/books';
 export const BOOKS_ALL_CATEGORIES_URL = BOOKS_URL + '/categories';
