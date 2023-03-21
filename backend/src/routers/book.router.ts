@@ -154,9 +154,11 @@ router.delete('/delete/:isbn',expressAsyncHandler(async (req,res) => {
     console.log("Deleting book with ISBN: " + req.params.isbn)
     try {
         await BookModel.deleteOne({isbn:req.params.isbn})
+        res.status(200).send('Book deleted')
     }
     catch (err) {
         console.log(err)
+        res.status(400).send(err)
     }
 }))
 

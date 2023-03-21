@@ -29,7 +29,7 @@ export class BookPageComponent {
 	}
 
 	toggleFavourite(bookId:string) {
-		alert(bookId)
+		//alert(bookId)
 	}
 	deleteBook() {
 		const bookIsbn = this.book.isbn;
