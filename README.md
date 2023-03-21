@@ -18,12 +18,7 @@ PW: 12345
 - Mobile app with text-scanning or barcode scanning functionality
 
 ## How can I run this?
-###### Back End:
-- cd backend
-- npm install 
-- npm start
-
-###### Front End:
-- cd frontend 
-- npm install
-- ng serve -o
+###From the root directory:
+npm run prebuild
+npm run build
+npm start
