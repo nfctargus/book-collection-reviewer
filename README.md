@@ -1,8 +1,5 @@
 # Book Collections
 A tool designed to keep track of your probably unhealthy book collection.
-Sample user credentials:
-Email: jane@gmail.com
-PW: 12345
 
 ## What can you do with this app?
 - View, filter and search for books you own
@@ -22,3 +19,7 @@ PW: 12345
 - npm run prebuild
 - npm run build
 - npm start
+
+### Sample user credentials:
+- Email: jane@gmail.com
+- PW: 12345
