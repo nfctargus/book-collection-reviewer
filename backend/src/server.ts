@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import userRouter from './routers/user.router';
 import bookRouter from './routers/book.router';
+import path from 'path';
 import { dbConnect } from './configs/database.config';
 dotenv.config();
 //Connect to MongoDB
@@ -18,9 +19,12 @@ app.use(cors({
 
 app.use("/api/users",userRouter);
 app.use("/api/books",bookRouter);
+app.use(express.static('public'));
+app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname,'public','index.html'))
+})
 
-
-const port = 5000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log("Backend running on http://localhost:" + port)
 })
